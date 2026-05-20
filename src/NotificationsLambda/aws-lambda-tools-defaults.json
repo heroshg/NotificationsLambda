@@ -1,0 +1,14 @@
+{
+  "Information": [
+    "This file is used to store build and deployment information specific to the dotnet lambda tooling.",
+    "For more information see: https://github.com/aws/aws-extensions-for-dotnet-cli"
+  ],
+  "profile": "",
+  "region": "us-east-1",
+  "configuration": "Release",
+  "function-architecture": "arm64",
+  "function-runtime": "dotnet8",
+  "function-memory-size": 256,
+  "function-timeout": 30,
+  "function-handler": "NotificationsLambda::NotificationsLambda.Function::FunctionHandler"
+}
