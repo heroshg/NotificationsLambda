@@ -18,11 +18,9 @@ public static class Startup
 
         var services = new ServiceCollection();
 
-        // Logging
         services.AddLogging(b =>
             b.AddConsole().SetMinimumLevel(LogLevel.Information));
 
-        // DynamoDB
         var region = configuration["DynamoDB:Region"] ?? "us-east-1";
         var tableName = configuration["DynamoDB:TableName"]
             ?? throw new InvalidOperationException("DynamoDB__TableName env var is required.");
@@ -33,14 +31,12 @@ public static class Startup
                 RegionEndpoint = Amazon.RegionEndpoint.GetBySystemName(region)
             }));
 
-        // Repository
         services.AddTransient<INotificationRepository>(sp =>
             new NotificationDynamoRepository(
                 sp.GetRequiredService<IAmazonDynamoDB>(),
                 tableName,
                 sp.GetRequiredService<ILogger<NotificationDynamoRepository>>()));
 
-        // Handlers
         services.AddTransient<UserCreatedHandler>();
         services.AddTransient<PaymentProcessedHandler>();
 

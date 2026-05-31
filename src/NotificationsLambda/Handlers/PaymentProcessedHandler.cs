@@ -32,7 +32,6 @@ public class PaymentProcessedHandler(
                       $"Tente novamente com outro método de pagamento. Pedido: {evt.OrderId}";
         }
 
-        // Simula envio de e-mail
         logger.LogInformation(
             "[EMAIL] To: {Email} | Subject: {Subject} | Body: {Body}",
             evt.UserEmail, subject, body);

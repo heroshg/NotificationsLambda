@@ -15,7 +15,6 @@ public class Function
     private readonly IServiceProvider _serviceProvider;
     private readonly ILogger<Function> _logger;
 
-    // Sufixos dos nomes das filas SQS para determinar o tipo de evento
     private const string UserCreatedQueueSuffix    = "user-created-events";
     private const string PaymentProcessedQueueSuffix = "payment-processed-events";
 
@@ -30,17 +29,12 @@ public class Function
         _logger          = _serviceProvider.GetRequiredService<ILogger<Function>>();
     }
 
-    // Construtor para testes
     public Function(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
         _logger          = serviceProvider.GetRequiredService<ILogger<Function>>();
     }
 
-    /// <summary>
-    /// Entry point da Lambda — triggered por SQS (UserCreatedEvent e PaymentProcessedEvent).
-    /// Retorna SQSBatchResponse para suporte a ReportBatchItemFailures.
-    /// </summary>
     public async Task<SQSBatchResponse> FunctionHandler(SQSEvent sqsEvent, ILambdaContext context)
     {
         _logger.LogInformation(

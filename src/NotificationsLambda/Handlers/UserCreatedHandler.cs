@@ -14,7 +14,6 @@ public class UserCreatedHandler(
             "Processing UserCreatedEvent — userId={UserId} email={Email}",
             evt.UserId, evt.Email);
 
-        // Simula envio de e-mail de boas-vindas
         logger.LogInformation(
             "[EMAIL] To: {Email} | Subject: Bem-vindo à FiapCloudGames, {Name}! | Body: Sua conta foi criada com sucesso.",
             evt.Email, evt.Name);
